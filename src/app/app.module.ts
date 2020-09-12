@@ -6,15 +6,29 @@ import { AppComponent } from './app.component';
 import { FotosComponent } from './component/fotos/fotos.component';
 import { CargaComponent } from './component/carga/carga.component';
 
+// Firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { environment } from 'src/environments/environment';
+import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
     FotosComponent,
-    CargaComponent
+    CargaComponent,
+    NgDropFilesDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [],
   bootstrap: [AppComponent]
